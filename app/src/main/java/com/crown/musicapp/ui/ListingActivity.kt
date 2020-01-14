@@ -61,18 +61,4 @@ class ListingActivity : AppCompatActivity() {
             DividerItemDecoration(rvMusicAlbum.context, linearLayoutManager.orientation)
         rvMusicAlbum.addItemDecoration(dividerItemDecoration)
     }
-
-    /*private fun getMusicData() {
-        if (Utils.isOnline(this))
-            musicViewModel.getMusicData().observe(
-                this,
-                Observer<MusicResponse> {
-                    if (it != null) {
-                        musicViewModel.setMusicData(it.musicDataList)
-                        populateBottomSheet(it.list)
-                    } else showErrorScreen(true)
-                })
-        else showErrorScreen(true, offline = true)
-
-    }*/
 }
