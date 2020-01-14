@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -43,8 +44,16 @@ class ListingActivity : AppCompatActivity() {
             ViewModelProviders.of(this, viewModelFactory)[MusicViewModel::class.java]
 
         handleRotation(savedInstanceState)
+        setToolbar()
         setupRecyclerView()
         getMusicData()
+    }
+
+    private fun setToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        toolbar.title = "Songs"
     }
 
     private fun handleRotation(savedInstanceState: Bundle?) {
@@ -73,17 +82,23 @@ class ListingActivity : AppCompatActivity() {
     }
 
     private fun getMusicData() {
-        if (Utils.isOnline(this))
+        if (Utils.isOnline(this)) {
+            progressBar.visibility = View.VISIBLE
             musicViewModel.getMusicData().observe(
                 this,
                 Observer<MusicResponse> {
+                    progressBar.visibility = View.GONE
                     if (it != null) {
                         musicViewModel.setMusicData(it.musicDataList)
                         populateList(it.musicDataList)
-                    }
-//                    else showErrorScreen(true)
+                    } else Toast.makeText(
+                        mContext,
+                        "Please connect to internet.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 })
-//        else showErrorScreen(true, offline = true)
+        }
+        else Toast.makeText(mContext, "Please connect to internet.", Toast.LENGTH_SHORT).show()
 
     }
 
