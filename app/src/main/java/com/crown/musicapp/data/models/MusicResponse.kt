@@ -6,5 +6,5 @@ data class MusicResponse(
     @SerializedName("timezone")
     val resultCount: Int,
     @SerializedName("results")
-    val musicDataList: List<MusicDataModel>
+    val musicDataList: ArrayList<MusicDataModel>
 )

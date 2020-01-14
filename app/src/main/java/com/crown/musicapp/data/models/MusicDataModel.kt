@@ -1,7 +1,10 @@
 package com.crown.musicapp.data.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MusicDataModel(
     @SerializedName("artistId")
     val artistId: Int,
@@ -18,9 +21,9 @@ data class MusicDataModel(
     @SerializedName("collectionArtistId")
     val collectionArtistId: Int,
     @SerializedName("collectionArtistName")
-    val collectionArtistName: String,
+    val collectionArtistName: String?,
     @SerializedName("collectionArtistViewUrl")
-    val collectionArtistViewUrl: String,
+    val collectionArtistViewUrl: String?,
     @SerializedName("collectionCensoredName")
     val collectionCensoredName: String,
     @SerializedName("collectionExplicitness")
@@ -71,4 +74,4 @@ data class MusicDataModel(
     val trackViewUrl: String,
     @SerializedName("wrapperType")
     val wrapperType: String
-)
+) : Parcelable

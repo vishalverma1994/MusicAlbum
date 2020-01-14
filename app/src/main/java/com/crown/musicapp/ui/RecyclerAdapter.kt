@@ -17,8 +17,9 @@ import java.util.*
 
 class RecyclerAdapter(
     private val mContext: Context,
-    private val musicDataList: ArrayList<MusicDataModel>
-) : RecyclerView.Adapter<RecyclerAdapter.MusicViewHolder>() {
+    private val musicDataList: ArrayList<MusicDataModel>,
+    var mOnClick:(Int) -> Unit)
+    : RecyclerView.Adapter<RecyclerAdapter.MusicViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val inflatedView = parent.inflate(R.layout.music_item_row, false)
         return MusicViewHolder(inflatedView)
@@ -42,16 +43,12 @@ class RecyclerAdapter(
     }
 
 
-    class MusicViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    inner class MusicViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private lateinit var musicData: MusicDataModel
         private var view: View = v
 
         init {
-            v.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
-            Log.d("RecyclerView", "CLICK!")
+            v.setOnClickListener{mOnClick(adapterPosition)}
         }
 
         fun bindItem(mContext: Context, musicData: MusicDataModel) {
