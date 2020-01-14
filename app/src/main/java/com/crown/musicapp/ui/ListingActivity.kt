@@ -1,5 +1,6 @@
 package com.crown.musicapp.ui
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -15,14 +16,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class ListingActivity : AppCompatActivity() {
-    lateinit var musicViewModel: MusicViewModel
+
+    private lateinit var musicViewModel: MusicViewModel
+    private lateinit var mContext: Context
 
     /**
      * Injecting via dagger
      * Profit is that we don't need to create every different viewModelFactory class with different params
      */
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModelFactory: ViewModelProvider.Factory
     private val musicDataList = ArrayList<MusicDataModel>()
     private lateinit var recyclerAdapter: RecyclerAdapter
 
@@ -31,7 +34,7 @@ class ListingActivity : AppCompatActivity() {
         (applicationContext as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        mContext = this@ListingActivity
         musicViewModel =
             ViewModelProviders.of(this, viewModelFactory)[MusicViewModel::class.java]
 
@@ -52,13 +55,11 @@ class ListingActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
 
-        val linearLayoutManager = LinearLayoutManager(this)
+        val linearLayoutManager = LinearLayoutManager(mContext)
         rvMusicAlbum.layoutManager = linearLayoutManager
-        recyclerAdapter = RecyclerAdapter(musicDataList)
+        recyclerAdapter = RecyclerAdapter(mContext, musicDataList)
         rvMusicAlbum.adapter = recyclerAdapter
         // for line separation between items
-        val dividerItemDecoration =
-            DividerItemDecoration(rvMusicAlbum.context, linearLayoutManager.orientation)
-        rvMusicAlbum.addItemDecoration(dividerItemDecoration)
+        rvMusicAlbum.addItemDecoration(DividerItemDecoration(rvMusicAlbum.context, linearLayoutManager.orientation))
     }
 }

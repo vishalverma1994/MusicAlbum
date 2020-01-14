@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="loader_width">96dp</dimen>
-    <dimen name="loader_height">96dp</dimen>
-    <dimen name="temp_text_size">96sp</dimen>
-    <dimen name="temp_text_subtitle_size">36sp</dimen>
-    <dimen name="max_min_temp">20sp</dimen>
-    <dimen name="weather_list_left_margin">16dp</dimen>
-    <dimen name="weather_list_top_margin">16dp</dimen>
-    <dimen name="weather_list_bottom_margin">16dp</dimen>
-    <dimen name="weather_list_right_margin">16dp</dimen>
-    <dimen name="error_text_left_margin">16dp</dimen>
-    <dimen name="error_text_right_margin">16dp</dimen>
-    <dimen name="retry_button_top_margin">44dp</dimen>
     <dimen name="card_view_corner_radius_margin">6dp</dimen>
     <dimen name="card_view_margin">10dp</dimen>
-    <dimen name="error_text_size">54sp</dimen>
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="medium_image_size">240dp</dimen>
+    <dimen name="large_image_size">280dp</dimen>
+
+
+    <dimen name="max_min_temp">20sp</dimen>
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="medium_text_size">14sp</dimen>
     <dimen name="large_text_size">18sp</dimen>
-    <dimen name="image_size">120dp</dimen>
-    <dimen name="text_margin">6dp</dimen>
 </resources>

@@ -1,17 +1,24 @@
 package com.crown.musicapp.ui
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.crown.musicapp.R
 import com.crown.musicapp.data.models.MusicDataModel
+import kotlinx.android.synthetic.main.music_item_row.view.*
 import java.util.*
 
 
-class RecyclerAdapter(private val musicDataList: ArrayList<MusicDataModel>) : RecyclerView.Adapter<RecyclerAdapter.MusicViewHolder>() {
+class RecyclerAdapter(
+    private val mContext: Context,
+    private val musicDataList: ArrayList<MusicDataModel>
+) : RecyclerView.Adapter<RecyclerAdapter.MusicViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val inflatedView = parent.inflate(R.layout.music_item_row, false)
         return MusicViewHolder(inflatedView)
@@ -23,7 +30,7 @@ class RecyclerAdapter(private val musicDataList: ArrayList<MusicDataModel>) : Re
         if (musicDataList.size > 0) {
 
             val itemMusic = musicDataList[position]
-            viewHolder.bindItem(itemMusic)
+            viewHolder.bindItem(mContext, itemMusic)
         }
     }
 
@@ -47,12 +54,15 @@ class RecyclerAdapter(private val musicDataList: ArrayList<MusicDataModel>) : Re
             Log.d("RecyclerView", "CLICK!")
         }
 
-        fun bindItem(forecastData: MusicDataModel) {
-            this.musicData = forecastData
+        fun bindItem(mContext: Context, musicData: MusicDataModel) {
+            this.musicData = musicData
+            view.tvArtistName.text = musicData.artistName
+            view.tvTrackName.text = musicData.trackName
+            Glide.with(mContext).applyDefaultRequestOptions(
+                RequestOptions().error(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+            ).load(musicData.artworkUrl100).into(view.ivAlbumLogo)
         }
     }
-
-
 }
 
 private fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {

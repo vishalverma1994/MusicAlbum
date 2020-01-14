@@ -13,7 +13,6 @@ import javax.inject.Inject
 class MusicDataRepository @Inject constructor(private val apiService: ApiService) {
 
     // hit the apis here
-
     fun getMusicData(): LiveData<MusicResponse> {
         val musicData: MutableLiveData<MusicResponse> = MutableLiveData()
         apiService.getMusicData().enqueue(object : Callback<MusicResponse> {

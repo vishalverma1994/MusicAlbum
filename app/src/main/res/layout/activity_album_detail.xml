@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivAlbumLogo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/medium_image_size"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/tvArtistName"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvArtistName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/large_text_size"
+        android:layout_margin="@dimen/card_view_margin"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="@string/app_name"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/ivAlbumLogo"
+        app:layout_constraintBottom_toTopOf="@+id/tvTrackName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTrackName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/medium_text_size"
+        android:layout_marginStart="@dimen/card_view_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="@string/app_name"
+        app:layout_constraintTop_toBottomOf="@+id/tvArtistName"
+        app:layout_constraintBottom_toTopOf="@+id/tvCollectionName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCollectionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/medium_text_size"
+        android:layout_marginStart="@dimen/card_view_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="@string/app_name"
+        app:layout_constraintTop_toBottomOf="@+id/tvTrackName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
